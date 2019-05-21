@@ -3,16 +3,21 @@ import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      arrayOfThings: ['apple', 'banana', 'pear', 'peach']
+    }
+  }
   render() {
+    let newArrayOfThings = []
+    for (let i=0; i < this.state.arrayOfThings.length; i++) {
+      newArrayOfThings.push(<h2 key={i}>{this.state.arrayOfThings[i]}</h2>)
+    }
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {newArrayOfThings}
       </div>
     );
   }

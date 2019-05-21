@@ -1,18 +1,31 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import axios from "axios"
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      ditto: ''
+    }
+  }
+
+  componentDidMount() {
+    axios.get("https://pokeapi.co/api/v2/pokemon/ditto/").then(response => {
+      this.setState({
+        ditto: response.data
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Name: {this.state.ditto.name}</h1>
+        <h1>Order: {this.state.ditto.order}</h1>
+        <h1>Height: {this.state.ditto.height}</h1>
+        <h1>Weight: {this.state.ditto.weight}</h1>
       </div>
     );
   }
